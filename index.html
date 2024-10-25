@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Sertifikat Turnamen</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        .certificate-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 50px auto;
+            max-width: 600px;
+        }
+        .certificate-preview, .data-list {
+            text-align: center;
+            margin: 30px 0;
+            display: none;
+        }
+        .certificate-preview p {
+            font-size: 18px;
+            color: #28a745;
+        }
+        .certificate-preview i {
+            font-size: 60px;
+            color: #28a745;
+        }
+        .trophy-icon {
+            font-size: 80px;
+            color: gold;
+            display: none;
+        }
+        .animate-fade {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .data-list {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .data-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .data-list ul li {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .data-list ul li strong {
+            color: #007bff;
+        }
+        /* Efek setelah sertifikat dibuat */
+        .certificate-created {
+            background-color: #e0ffe0;
+            transition: background-color 1s ease;
+        }
+        .certificate-created .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+        .certificate-created .btn-primary:after {
+            content: " ✔";
+        }
+        .certificate-created .trophy-icon {
+            display: block;
+            animation: bounceIn 1.5s ease-in-out;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .certificate-created .certificate-preview {
+            display: block;
+            color: #28a745;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="certificate-container" id="certificateContainer">
+        <h2 class="text-center">Unduh Sertifikat Turnamen Anda</h2>
+        <form id="certificateForm">
+            <div class="form-group">
+                <label for="name">Nama</label>
+                <input type="text" class="form-control" id="name" placeholder="Masukkan nama Anda" required>
+            </div>
+            <div class="form-group">
+                <label for="tournament">Nama Turnamen</label>
+                <input type="text" class="form-control" id="tournament" placeholder="Masukkan nama turnamen" required>
+            </div>
+            <div class="form-group">
+                <label for="rank">Peringkat</label>
+                <select class="form-control" id="rank" required>
+                    <option value="" disabled selected>Pilih peringkat</option>
+                    <option value="Juara 1">Juara 1</option>
+                    <option value="Juara 2">Juara 2</option>
+                    <option value="Juara 3">Juara 3</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Lihat Pratinjau & Unduh Sertifikat</button>
+        </form>
+
+        <!-- Daftar Data Pratinjau -->
+        <div id="dataList" class="data-list animate-fade">
+            <h4>Data Pratinjau</h4>
+            <ul>
+                <li>Nama: <strong id="previewName"></strong></li>
+                <li>Turnamen: <strong id="previewTournament"></strong></li>
+                <li>Peringkat: <strong id="previewRank"></strong></li>
+            </ul>
+        </div>
+
+        <!-- Pratinjau setelah unduh -->
+        <div id="certificatePreview" class="certificate-preview animate-fade">
+            <i class="fas fa-check-circle"></i>
+            <p>Sertifikat berhasil diunduh! Terima kasih, <span id="userName"></span>!</p>
+            <div class="trophy-icon">
+                <i class="fas fa-trophy"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
